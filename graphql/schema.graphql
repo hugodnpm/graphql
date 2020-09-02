@@ -1,0 +1,60 @@
+
+type Query {
+    getAllProducts(filter: ProductFilter): [Product]
+    getAllCategories(filter: CategoriesFilter): [Categories]
+}
+type Categories {
+    id: String
+    category: String
+    
+}
+
+type Product {
+    id: String
+    product: String
+    price: Float
+    images: Image
+}
+type Image {
+    id: String
+    description: String
+    url: String
+}
+type Mutation{
+    createProduct(input: ProductInput): Product
+    updateProduct(id: String!, input: ProductUpdateInput): Product
+    deleteProduct(id: String!): Boolean
+    createImageOnProduct(productId: String!, input:ImageInput): Image
+    deleteImageOnProduct(productId: String!, id: String!): Boolean
+
+    createCategories(input: CategoriestInput): Categories
+    upDateCategories(id: String!, input: CategoriesUpdateInput): Categories
+    deleteCategories(id: String!): Boolean    
+
+}
+input CategoriesFilter {
+    categoryId: String
+}
+input CategoriestInput {
+    category: String!    
+}
+input CategoriesUpdateInput {
+    category: String    
+}
+
+input ProductFilter {
+    categoryId: String
+}
+input ProductInput {
+    product: String!
+    price: Float!
+}
+input ImageInput {
+    description: String!
+    url: String!
+}
+input ProductUpdateInput {
+    product: String
+    price: Float
+    
+}
